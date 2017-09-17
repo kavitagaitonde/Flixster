@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0606B3DE1F6DB60B00EAB884 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0606B3DD1F6DB60B00EAB884 /* MovieCollectionViewCell.swift */; };
 		063344F81F68BD3800D06266 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063344F71F68BD3800D06266 /* AppDelegate.swift */; };
 		063344FD1F68BD3800D06266 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 063344FB1F68BD3800D06266 /* Main.storyboard */; };
 		063344FF1F68BD3800D06266 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 063344FE1F68BD3800D06266 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0606B3DD1F6DB60B00EAB884 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		063344F41F68BD3800D06266 /* Flixster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flixster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		063344F71F68BD3800D06266 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		063344FC1F68BD3800D06266 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			children = (
 				063344F71F68BD3800D06266 /* AppDelegate.swift */,
 				0633450D1F68F97300D06266 /* MovieTableViewCell.swift */,
+				0606B3DD1F6DB60B00EAB884 /* MovieCollectionViewCell.swift */,
 				063345091F68BD6800D06266 /* FlixsterViewController.swift */,
 				0666C78D1F6983BB00F636FF /* MovieDetailsViewController.swift */,
 				0633450B1F68F57600D06266 /* Constants.swift */,
@@ -231,6 +234,7 @@
 				0666C78E1F6983BB00F636FF /* MovieDetailsViewController.swift in Sources */,
 				063344F81F68BD3800D06266 /* AppDelegate.swift in Sources */,
 				0633450A1F68BD6800D06266 /* FlixsterViewController.swift in Sources */,
+				0606B3DE1F6DB60B00EAB884 /* MovieCollectionViewCell.swift in Sources */,
 				0633450E1F68F97300D06266 /* MovieTableViewCell.swift in Sources */,
 				0633450C1F68F57600D06266 /* Constants.swift in Sources */,
 			);
