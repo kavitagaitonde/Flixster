@@ -1,0 +1,5 @@
+.DS_Store
+DerivedData/
+Flixster.xcodeproj/xcuserdata
+Pods/Pods.xcodeproj/xcuserdata
+Flixster.xcworkspace/xcuserdata
