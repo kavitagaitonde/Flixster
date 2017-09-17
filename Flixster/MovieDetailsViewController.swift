@@ -21,6 +21,8 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var detailView: UIView!
     var movie: NSDictionary?
     
+    @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,7 +33,9 @@ class MovieDetailsViewController: UIViewController {
         //self.titleLabelView?.sizeToFit()
         self.detailsLabelView?.text = movie?["overview"] as? String
         self.detailsLabelView?.sizeToFit()
-        
+        self.releaseDateLabel?.text = movie?["release_date"] as? String
+       // self.durationLabel?.text =
+            
         self.detailsScrollView.contentSize = CGSize(width: self.detailsScrollView.bounds.width, height: self.detailsScrollView.bounds.height + 50)
         
         self.setPosterImage()

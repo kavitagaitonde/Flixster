@@ -26,11 +26,9 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
     //@IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var movieImageView: UIImageView!
     
-    var refreshControl : UIRefreshControl?
-    
     @IBOutlet weak var tableSearchBar: UISearchBar!
-    @IBOutlet weak var collectionSearchBar: UISearchBar!
     
+    var refreshControl : UIRefreshControl?
     var refreshControlCollection : UIRefreshControl?
     var moviesData:[NSDictionary] = []
     var moviesDataOriginal:[NSDictionary] = []
@@ -52,7 +50,6 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.isHidden = true
-        self.collectionSearchBar.delegate = self
         
         //setup navigation bar
         let segmentedControl = UISegmentedControl(items: ["Table", "Grid"])
@@ -216,6 +213,11 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: - Collection View
 
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SearchBarView", for: indexPath) as! CollectionReusableView
+        return headerView
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return moviesData.count;
     }
