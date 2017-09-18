@@ -77,7 +77,7 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
         self.collectionErrorLabel?.backgroundColor = UIColor.gray
         self.collectionErrorLabel?.textAlignment = NSTextAlignment.center
         self.collectionErrorLabel?.isHidden = true
-        self.collectionView.addSubview(self.collectionErrorLabel!)
+        //self.collectionView.addSubview(self.collectionErrorLabel!)
         
         // Add UI refreshing on pull down
         self.refreshControl = UIRefreshControl()
@@ -120,7 +120,7 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
         let url = URL(string:(self.featureType == FeatureType.nowPlaying) ? Constants.MOVIES_NOW_PLAYING_URL : Constants.MOVIES_TOP_RATED_URL)
         var request = URLRequest(url: url!)
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-        //request.timeoutInterval = 2.0
+        request.timeoutInterval = 2.0
         let session = URLSession(
             configuration: URLSessionConfiguration.default,
             delegate:nil,
@@ -141,13 +141,13 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
                 if (error != nil) {
                     //error
                     self.isNetworkError = true
-                    
+                    self.errorLabel?.isHidden = false
+                    self.collectionErrorLabel?.isHidden = false
+
                     if(self.layoutType == LayoutType.table) {
-                        self.tableView.reloadData()
-                        self.errorLabel?.isHidden = false
+                        self.tableView.reloadData()                        
                     } else {
                         self.collectionView.reloadData()
-                        self.collectionErrorLabel?.isHidden = false
                     }
                 } else {
                     self.isNetworkError = false
@@ -208,6 +208,14 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SearchBarView", for: indexPath) as! CollectionReusableView
+        self.collectionErrorLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: 20))
+        self.collectionErrorLabel?.text = "Network Error"
+        self.collectionErrorLabel?.font = self.collectionErrorLabel?.font.withSize(15)
+        self.collectionErrorLabel?.backgroundColor = UIColor.gray
+        self.collectionErrorLabel?.textAlignment = NSTextAlignment.center
+        self.collectionErrorLabel?.isHidden = true
+        headerView.addSubview(self.collectionErrorLabel!)
+        
         return headerView
     }
     
