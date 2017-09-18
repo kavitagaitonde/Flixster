@@ -30,47 +30,16 @@ class MovieDetailsViewController: UIViewController {
         //setup movie info
     
         self.titleLabelView?.text = movie?["title"] as? String
-        //self.titleLabelView?.sizeToFit()
         self.detailsLabelView?.text = movie?["overview"] as? String
         self.detailsLabelView?.sizeToFit()
         self.releaseDateLabel?.text = movie?["release_date"] as? String
-       // self.durationLabel?.text =
-            
+        
         self.detailsScrollView.contentSize = CGSize(width: self.detailsScrollView.bounds.width, height: self.detailsScrollView.bounds.height + 50)
         
         self.setPosterImage()
     }
 
     func setPosterImage() {
-        /*if let posterPath = movie?["poster_path"] as? String {
-            let posterUrl = NSURL(string: Constants.MOVIE_POSTER_BASE_URL+posterPath)
-            
-            let imageRequest = NSURLRequest(url: posterUrl! as URL) as URLRequest
-            
-            self.imageView.setImageWith(
-                imageRequest as URLRequest,
-                placeholderImage: nil,
-                success: { (imageRequest, imageResponse, image) -> Void in
-                    
-                    // imageResponse will be nil if the image is cached
-                    if imageResponse != nil {
-                        print("Image was NOT cached, fade in image")
-                        self.imageView.alpha = 0.0
-                        self.imageView.image = image
-                        UIView.animate(withDuration: 0.5, animations: { () -> Void in
-                            self.imageView.alpha = 1.0
-                        })
-                    } else {
-                        print("Image was cached so just update the image")
-                        self.imageView.image = image
-                    }
-                },
-                failure: { (imageRequest, imageResponse, error) -> Void in
-                    // do something for the failure condition
-            })
-            
-            //self.imageView.setImageWith(posterUrl! as URL)
-         }*/
         if let posterPath = movie?["poster_path"] as? String {
         let smallImageRequest = NSURLRequest(url: NSURL(string: Constants.MOVIE_POSTER_LOWRES_BASE_URL+posterPath)! as URL) as URLRequest
         let largeImageRequest = NSURLRequest(url: NSURL(string: Constants.MOVIE_POSTER_HIGRES_BASE_URL+posterPath)! as URL) as URLRequest

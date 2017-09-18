@@ -22,15 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nowPlayingNavController = storyBoard.instantiateViewController(withIdentifier: "MoviesNavigationController") as! UINavigationController
         let nowPlayingViewController = nowPlayingNavController.topViewController as! FlixsterViewController
         nowPlayingViewController.featureType = FeatureType.nowPlaying
+        nowPlayingNavController.tabBarItem.image = UIImage(named: "now_playing")
         nowPlayingNavController.tabBarItem.title  = "Now Playing"
-        //nowPlayingViewController.tabBarItem.image = UIImage(named: "now_playing")
-
+        
         let topRatedNavController = storyBoard.instantiateViewController(withIdentifier: "MoviesNavigationController") as! UINavigationController
         let topRatedViewController = topRatedNavController.topViewController as! FlixsterViewController
         topRatedViewController.featureType = FeatureType.topRated
+        topRatedNavController.tabBarItem.image = UIImage(named: "top_rated")
         topRatedNavController.tabBarItem.title  = "Top Rated"
-        //topRatedViewController.tabBarItem.image = UIImage(named: "top_rated")
-
+        
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [nowPlayingNavController, topRatedNavController]
         

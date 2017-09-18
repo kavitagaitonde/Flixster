@@ -23,7 +23,6 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    //@IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var movieImageView: UIImageView!
     
     @IBOutlet weak var tableSearchBar: UISearchBar!
@@ -36,6 +35,7 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
     var layoutType = LayoutType.table
     var isNetworkError = false
     var errorLabel : UILabel?
+    var collectionErrorLabel : UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +53,14 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
         
         //setup navigation bar
         let segmentedControl = UISegmentedControl(items: ["Table", "Grid"])
+        segmentedControl.setImage(UIImage(named: "list"), forSegmentAt: 0)
+        segmentedControl.setImage(UIImage(named: "grid"), forSegmentAt: 1)
         segmentedControl.sizeToFit()
         let segmentedButton = UIBarButtonItem(customView: segmentedControl)
         segmentedControl.addTarget(self, action: #selector(changeView(sender:)), for: .valueChanged)
         segmentedControl.selectedSegmentIndex = 0
         navigationItem.leftBarButtonItem = segmentedButton
+
         
         //setup error view
         self.errorLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: 20))
@@ -67,7 +70,14 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
         self.errorLabel?.textAlignment = NSTextAlignment.center
         self.errorLabel?.isHidden = true
         self.tableView.addSubview(self.errorLabel!)
-        self.collectionView.addSubview(self.errorLabel!)
+        
+        self.collectionErrorLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: 20))
+        self.collectionErrorLabel?.text = "Network Error"
+        self.collectionErrorLabel?.font = self.errorLabel?.font.withSize(15)
+        self.collectionErrorLabel?.backgroundColor = UIColor.gray
+        self.collectionErrorLabel?.textAlignment = NSTextAlignment.center
+        self.collectionErrorLabel?.isHidden = true
+        self.collectionView.addSubview(self.collectionErrorLabel!)
         
         // Add UI refreshing on pull down
         self.refreshControl = UIRefreshControl()
@@ -110,6 +120,7 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
         let url = URL(string:(self.featureType == FeatureType.nowPlaying) ? Constants.MOVIES_NOW_PLAYING_URL : Constants.MOVIES_TOP_RATED_URL)
         var request = URLRequest(url: url!)
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        //request.timeoutInterval = 2.0
         let session = URLSession(
             configuration: URLSessionConfiguration.default,
             delegate:nil,
@@ -130,16 +141,18 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
                 if (error != nil) {
                     //error
                     self.isNetworkError = true
-                    self.errorLabel?.isHidden = false
                     
                     if(self.layoutType == LayoutType.table) {
                         self.tableView.reloadData()
+                        self.errorLabel?.isHidden = false
                     } else {
                         self.collectionView.reloadData()
+                        self.collectionErrorLabel?.isHidden = false
                     }
                 } else {
                     self.isNetworkError = false
                     self.errorLabel?.isHidden = true
+                    self.collectionErrorLabel?.isHidden = true
                     if let data = dataOrNil {
                         let dictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                         self.moviesData = dictionary["results"] as! [NSDictionary]
@@ -172,26 +185,6 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
         return CGFloat(Constants.MOVIE_CELL_HEIGHT)
     }
     
-    /*func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if(self.isNetworkError) {
-            return CGFloat(Constants.MOVIE_TABLEVIEW_SECTION_HEADER_HEIGHT)
-        } else {
-            return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?  {
-        if(self.isNetworkError) {
-            return "network error!!"
-        } else {
-            return ""
-        }
-    }*/
-    
-    /*func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat(Constants.MOVIE_TABLEVIEW_SECTION_FOOTER_HEIGHT)
-    }*/
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return moviesData.count;
     }

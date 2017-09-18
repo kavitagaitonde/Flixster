@@ -24,9 +24,6 @@ The following **optional** features are implemented:
 - [X] Customize the highlight and selection effect of the cell.
 - [X] Customize the navigation bar.
 
-The following **additional** features are implemented:
-
-- [ ] List anything else that you can get done to improve the app functionality!
 
 ## Video Walkthrough
 
@@ -38,7 +35,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+#1 I had trouble add the UISearchBar to the UICollectionView. In the end I ended up adding it to the Header view.
+#2 Tab bar item titles were not showing up. Then I moved the setting of the title after the image, and it works now. 
 
 ## License
 
