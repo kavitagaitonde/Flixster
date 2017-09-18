@@ -73,7 +73,7 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.collectionErrorLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: 20))
         self.collectionErrorLabel?.text = "Network Error"
-        self.collectionErrorLabel?.font = self.errorLabel?.font.withSize(15)
+        self.collectionErrorLabel?.font = self.collectionErrorLabel?.font.withSize(15)
         self.collectionErrorLabel?.backgroundColor = UIColor.gray
         self.collectionErrorLabel?.textAlignment = NSTextAlignment.center
         self.collectionErrorLabel?.isHidden = true
@@ -208,12 +208,6 @@ class FlixsterViewController: UIViewController, UITableViewDelegate, UITableView
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SearchBarView", for: indexPath) as! CollectionReusableView
-        self.collectionErrorLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: 20))
-        self.collectionErrorLabel?.text = "Network Error"
-        self.collectionErrorLabel?.font = self.collectionErrorLabel?.font.withSize(15)
-        self.collectionErrorLabel?.backgroundColor = UIColor.gray
-        self.collectionErrorLabel?.textAlignment = NSTextAlignment.center
-        self.collectionErrorLabel?.isHidden = true
         headerView.addSubview(self.collectionErrorLabel!)
         
         return headerView
