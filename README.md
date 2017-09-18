@@ -22,14 +22,15 @@ The following **optional** features are implemented:
 - [X] All images fade in.
 - [X] For the large poster, load the low-res image first, switch to high-res when complete.
 - [X] Customize the highlight and selection effect of the cell.
-- [X] Customize the navigation bar.
+- [] Customize the navigation bar.
 
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/vAFaUIl.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/Mf0oLoi.png' title='Network Error screenshot' width='' alt='Network Error screenshot' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
